@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - Bullet
+  - Item
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: field1
+    uniqueID: 2350959121
+    locked: 0
+  - name: field2
+    uniqueID: 2830051401
+    locked: 0
+  - name: field3
+    uniqueID: 2972725263
+    locked: 0
+  - name: ballte
+    uniqueID: 1691612403
+    locked: 0
+  - name: enemy
+    uniqueID: 1916438147
+    locked: 0
+  - name: player
+    uniqueID: 577835887
+    locked: 0
