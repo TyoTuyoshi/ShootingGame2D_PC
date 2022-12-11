@@ -7,15 +7,10 @@ using Random = UnityEngine.Random;
 public class PlayerController : MonoBehaviour
 {
     //Unity側で設定
-    [Header("プレイヤー")] [SerializeField] private GameObject Machine; //元となるプレハブ
-
     [Header("ミサイル")] [SerializeField] private GameObject myMissile; //発射するミサイル
 
     [Header("ライフポイント")] [SerializeField, Range(0, 100)]
     private int lifePoint = 100; //ライフポイントHP
-
-    [Header("残基")] [SerializeField, Range(0, 3)]
-    private int residue = 3; //残基
 
     [Header("移動速度")] [SerializeField, Range(0, 1)]
     private float speed = 0.3f; //スピード
@@ -35,7 +30,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("移動制限範囲2")] [SerializeField] //左下
     private Vector2 maxPos = new Vector2();
-
 
     private int energyPoint = 0; //必殺チャージ
     private Vector2 nowPos; //プレイヤーの座標
@@ -63,8 +57,7 @@ public class PlayerController : MonoBehaviour
     //---------------------------------------------------------------------//
     private void Start()
     {
-        //プレハブからプレイヤーを生成
-        player = Instantiate(Machine) as GameObject;
+        player =  this.gameObject;// Instantiate(Machine) as GameObject;
         //初期座標
         nowPos = new Vector2(0, -3.0f);
         player.transform.position = nowPos;
@@ -73,10 +66,7 @@ public class PlayerController : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         trcollision = new TranceformCollision();
     }
-
-
-    private bool enterFlag = false;
-
+    
     //---------------------------------------------------------------------//
     // Update()とは，Unity実行時に常に呼ばれる関数です．
     // 処理が終わるとまたUpdate()の最初から実行されます．
@@ -138,9 +128,9 @@ public class PlayerController : MonoBehaviour
         }
 
         //当たり判定
-        if (trcollision.CollisionEnterDetection(player, "Enemy", 0.5f, 0.3f))
+        if (trcollision.CollisionEnterDetection(player, "Enemy", 0.5f, 0.5f))
         {
-            Debug.Log("touch");
+           //Debug.Log("touch");
             lifePoint--;
         }
 

@@ -9,6 +9,7 @@ public class MissileScript : MonoBehaviour
     [Header("ミサイル飛行速度")][SerializeField,Range(0.0f,1.0f)]
     private float msilspeed = 0.500f;//ミサイルの飛行速度
 
+    private Vector2 nowPos;
     private float time = 0;
     private void Start()
     {
@@ -17,8 +18,13 @@ public class MissileScript : MonoBehaviour
 
     private void Update()
     {
-        time += Time.deltaTime;
-        if (time > 1.3f)
+        nowPos = missile.transform.position;
+        //time += Time.deltaTime;
+        //if (time > 1.3f)
+        //{
+        //    MissileDestory();
+        //}
+        if (nowPos.y > 10)
         {
             MissileDestory();
         }

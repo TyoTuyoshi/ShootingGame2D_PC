@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4483705684860323140}
   - component: {fileID: 4483705684860323141}
   - component: {fileID: 4483705684860323146}
-  - component: {fileID: 5739983968349546601}
+  - component: {fileID: 2269513356491823426}
   m_Layer: 0
   m_Name: Enemy B
   m_TagString: Enemy
@@ -119,8 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6402c4800de28e4daf9a760f67a4851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoint: 6
---- !u!82 &5739983968349546601
+  lifePoint: 2
+  damage: {fileID: 1752557530610887175, guid: ed96be69956fa684ab41a0a1c7f5da7d, type: 3}
+--- !u!82 &2269513356491823426
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,10 +131,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6983b0461c2fad749be9c89a16864865, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f87d2fdbd8994b744aaebed984dfff2e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
-  m_Pitch: 2
+  m_Volume: 0.218
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -206,7 +207,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
