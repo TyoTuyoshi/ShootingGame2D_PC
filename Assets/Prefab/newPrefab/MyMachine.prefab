@@ -126,8 +126,7 @@ MonoBehaviour:
   radius: 0.5
   minPos: {x: -9, y: -7}
   maxPos: {x: 9, y: 8}
-  interval: 0.238
-  msilspeed: 0.5
+  interval: 0.4
   HP_text: {fileID: 8266620295798239385}
 --- !u!82 &-8644342809181737331
 AudioSource:

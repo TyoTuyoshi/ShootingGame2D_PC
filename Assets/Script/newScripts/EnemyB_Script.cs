@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using TMPro;
-public class EnemyScript : MonoBehaviour
+public class EnemyB_Script : MonoBehaviour
 {
     //敵のコード
     //---------------------------------------------------------------------//
@@ -27,7 +27,6 @@ public class EnemyScript : MonoBehaviour
     [Header("ミサイル飛行速度")] [SerializeField, Range(0.0f, 1.0f)]
     private float msilspeed = 0.500f; //ミサイルの速度
     //------------------------------------------------------------------------------
-    
     
     [SerializeField, Range(0, 10)] private int lifePoint = 10;
     [SerializeField] private GameObject damage; 
@@ -58,7 +57,7 @@ public class EnemyScript : MonoBehaviour
                 new Vector2(nowPos.x + Random.Range(-1.0f, 1.0f), nowPos.y + Random.Range(0.1f, 1.5f));
         }
 
-        enemy.transform.position = new Vector2(MathF.Sin(Theta / 180 * Mathf.PI)*2 , nowPos.y -= 0.01f);
+        enemy.transform.position = new Vector2(MathF.Sin(Theta / 180 * Mathf.PI) * 2, nowPos.y -= 0.02f);
         Theta += 0.05f;
         Theta %= 360;
         nowPos = enemy.transform.position;

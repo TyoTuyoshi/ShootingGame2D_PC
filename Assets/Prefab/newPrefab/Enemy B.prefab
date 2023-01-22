@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMissile: {fileID: 5231617014271305199, guid: 15e837cf768a7e045b07c706d4809f65, type: 3}
-  interval: 5
+  interval: 3
   msilspeed: 0.5
   lifePoint: 5
   damage: {fileID: 1752557530610887175, guid: ed96be69956fa684ab41a0a1c7f5da7d, type: 3}

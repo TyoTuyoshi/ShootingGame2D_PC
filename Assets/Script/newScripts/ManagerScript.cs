@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -24,10 +25,11 @@ public class ManagerScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI lifeText; //ライフポイントGUI
     [SerializeField] private TextMeshProUGUI resdText; //残基GUI
     [SerializeField] private TextMeshProUGUI awakeTimer; //復活カウントダウン
+    [SerializeField] private GameObject BackTitleButton; //タイトルバック
 
-    [SerializeField] private TextMeshProUGUI PointText; //ライフポイントGUI
+    [SerializeField] private GameObject EnemyB;
+    [SerializeField] private GameObject EnemyC;
 
-    [SerializeField] private GameObject Enemy;
     private GameObject enemy;
     
     private void Start()
@@ -35,6 +37,9 @@ public class ManagerScript : MonoBehaviour
         //プレハブからプレイヤーを生成
         player = Instantiate(Machine) as GameObject;
         END.SetActive(false);
+        ClearText.SetActive(false);
+
+        BackTitleButton.SetActive(false);
         //初期座標
         nowPos = new Vector2(0, -3.0f);
         player.transform.position = nowPos;
@@ -45,29 +50,43 @@ public class ManagerScript : MonoBehaviour
 
     private float wait_t = 0;
     private float enemy_wait_t = 8.0f;
+    
+    
+    //ゲーム耐久時間
+    private float gameover_time = 60.0f;
+    [SerializeField] private TextMeshProUGUI gameTimer;
+    [SerializeField] private GameObject ClearText;
 
-    public int point = 0;
+    private bool gameOverFlag = false;
+    private bool gameClearFlag = false;
+
 
     //倒した敵の数
-    public int Point
-    {
-        set { point = value;}
-        get { return point; }
-    }
-    
     private void Update()
     {
-        //PointText.text = "Point:" + point;
+        gameover_time -= Time.deltaTime;
+        gameTimer.text = "Time:" + ((int)gameover_time).ToString();
+
+        if (gameover_time < 0 && !gameOverFlag)
+        {
+            gameover_time = 0;
+            gameClearFlag = true;
+            ClearText.SetActive(true);
+            BackTitleButton.SetActive(true);
+        }
+
         //敵生成
         enemy_wait_t += Time.deltaTime;
-        if (enemy_wait_t > enemy_interval)
+        if (enemy_wait_t > enemy_interval && !gameOverFlag && !gameClearFlag)
         {
             enemy_wait_t = 0;
             for (int i = 0; i < Random.Range(6, 12); i++)
             {
-                enemy = Instantiate(Enemy) as GameObject;
+                enemy = Instantiate(EnemyB) as GameObject;
                 enemy.transform.position = new Vector2(5 - i, i / 2 + 18.0f);
             }
+            enemy = Instantiate(EnemyC) as GameObject;
+            enemy.transform.position = new Vector2(7.5f, 7.5f);
         }
         
         //例外処理try-catch文
@@ -76,8 +95,10 @@ public class ManagerScript : MonoBehaviour
             //残基チェック
             if (residue == 0)
             {
-                Debug.Log("END");
+                BackTitleButton.SetActive(true);
                 END.SetActive(true);
+                gameover_time = 0;
+                gameOverFlag = true;
                 return;
             }
             
@@ -86,12 +107,12 @@ public class ManagerScript : MonoBehaviour
             //GUIにライフポイントを反映
             lifeText.text = "LIFE:" + life.ToString();
             resdText.text = "RESIDEUE:" + residue.ToString();
-            if (life <= 0 && residue >= 0)
+            if (life <= 0 && residue > 0 && !gameClearFlag)
             {
                 Destroy(player);
                 //アイコンを暗くする。
                 machineIcon[residue - 1].color = new Color32(0x3f, 0x3f, 0x3f, 0xff);
-                residue--;
+                --residue;
             }
         }
         
@@ -108,5 +129,10 @@ public class ManagerScript : MonoBehaviour
                 player = Instantiate(Machine) as GameObject;
             }
         }
+    }
+
+    public void BackTitle()
+    {
+        SceneManager.LoadScene("TITLE");
     }
 }
