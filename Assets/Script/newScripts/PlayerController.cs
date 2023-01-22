@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [Header("ミサイル")] [SerializeField] private GameObject myMissile; //発射するミサイル
 
     [Header("ライフポイント")] [SerializeField, Range(0, 100)]
-    private int lifePoint = 100; //ライフポイントHP
+    public int lifePoint = 30; //ライフポイントHP
 
     [Header("移動速度")] [SerializeField, Range(0, 1)]
     private float speed = 0.3f; //スピード
@@ -40,9 +41,9 @@ public class PlayerController : MonoBehaviour
     [Header("射撃間隔")] [SerializeField, Range(0.0f, 1.0f)]
     private float interval = 0.500f; //射撃間隔
 
-    [Header("ミサイル飛行速度")] [SerializeField, Range(0.0f, 1.0f)]
-    private float msilspeed = 0.500f; //ミサイルの速度
-
+    //HP表示
+    [SerializeField] private TextMeshPro HP_text;
+    
     private AudioSource _audioSource;
     
     private float time = 0f;
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
     //---------------------------------------------------------------------//
     private void Update()
     {
+        HP_text.text = "HP:" + lifePoint;
         //射撃
         //ミサイルのプレハブを生成します．
         time += Time.deltaTime;
@@ -133,7 +135,15 @@ public class PlayerController : MonoBehaviour
            //Debug.Log("touch");
             lifePoint--;
         }
+        //死亡判定
+        else if (lifePoint <= 0)
+        {
+            lifePoint = 0;
+            //_audioSource.PlayOneShot(_audioSource.clip);
+            //Destroy(enemy, 0.75f);
+        }
 
+        Debug.Log(lifePoint);
         //画面の範囲に収める．
         player.transform.position = PositionClamp(player.transform.position, minPos, maxPos);
     }

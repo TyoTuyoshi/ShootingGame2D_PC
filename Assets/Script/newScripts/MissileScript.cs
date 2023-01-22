@@ -19,12 +19,7 @@ public class MissileScript : MonoBehaviour
     private void Update()
     {
         nowPos = missile.transform.position;
-        //time += Time.deltaTime;
-        //if (time > 1.3f)
-        //{
-        //    MissileDestory();
-        //}
-        if (nowPos.y > 10)
+        if (nowPos.y > 8.5f)
         {
             MissileDestory();
         }

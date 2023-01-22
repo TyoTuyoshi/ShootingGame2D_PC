@@ -119,7 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6402c4800de28e4daf9a760f67a4851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoint: 2
+  myMissile: {fileID: 5231617014271305199, guid: 15e837cf768a7e045b07c706d4809f65, type: 3}
+  interval: 5
+  msilspeed: 0.5
+  lifePoint: 5
   damage: {fileID: 1752557530610887175, guid: ed96be69956fa684ab41a0a1c7f5da7d, type: 3}
 --- !u!82 &2269513356491823426
 AudioSource:
@@ -133,7 +136,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f87d2fdbd8994b744aaebed984dfff2e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.218
+  m_Volume: 0.1
   m_Pitch: 0.5
   Loop: 0
   Mute: 0
